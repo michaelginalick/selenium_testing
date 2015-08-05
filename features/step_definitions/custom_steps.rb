@@ -37,6 +37,10 @@ Then (/^I should open new email/) do
 	open_new_email
 end
 
+Then (/^I should go back to inbox/) do 
+	back_to_inbox
+end
+
 
 def verify_username
 	ele_username = $driver.find_element(:id, ":2w")
@@ -48,36 +52,30 @@ def verify_username
 end
 
 def see_email
-	email = $driver.find_element(:id, ":36")
+	email = $driver.find_element(:xpath, "//div[text()='Primary']")
 	if !email
-		raise "Emails found"
+		raise "Emails not found"
 	else
-		puts "There are no emails found"
+		puts "Emails found have been found"
 	end
 end
 
 def open_email
-	$driver.find_element(:id, ":3d").click
+	$driver.find_element(:id, ":3h").click
 	sleep(2)
 	open_email = $driver.find_element(:class, "amn")
 	if !open_email
-		raise "Email was opened"
+		raise "Email was not opened"
 	else
-		puts "Email was not open"
+		puts "Email was open"
 	end
 end
 
 
-def go_back_inbox
-	$driver.find_element(:id, ":j1").click
-	sleep(2)
-	see_email
-end
-
 def compose_email
 	$driver.find_element(:xpath, "//div[text()='COMPOSE']").click
 	sleep(2)
-	input_box = $driver.find_element(:id, ":pm") 
+	input_box = $driver.find_element(:xpath, "//div[text()='New Message']") 
 	if !input_box
 		raise "Email composition cannot begin"
 	else
@@ -87,25 +85,18 @@ end
 
 
 def send_email
-	$driver.find_element(:xpath, "//div[text()='Send']").click
-	input_box = $driver.find_element(:id, ":pm")
-	if !input_box
+	click_send = $driver.find_element(:xpath, "//div[text()='Send']").click
+	if !click_send
 		raise "Email was not sent"
 	else
 		puts "Email was sent"
 	end
 end
 
-# def open_new_email
-# 	$driver.find_element(:class, "aKx").click
-# 	sleep(2)
-# 	open_email = $driver.find_element(:class, "amn")
-# 	if !open_email
-# 		raise "Email was opened"
-# 	else
-# 		puts "Email was not open"
-# 	end
-# end
+def back_to_inbox
+	click_send = $driver.find_element(:xpath, "//div[text()='Inbox']").click
+end
+
 
 
 
