@@ -14,9 +14,13 @@ Feature: Gmail_login
 		Then I wait for 5 sec
 		Then I should compose email
 		Then I wait for 5 sec
-		And I enter "michaellickallen@gmail.com" into input field having id ":ml"
-		And I enter "This is Mike" into input field having id ":of"
-		And I enter "This is mike testing yesmail" into input field having id ":ph"
-		When I click on the element having id ":n7"
-		Then I wait for 2 sec
-		Then I should not see the composition box
+		When I click on element having id ":ml"
+		Then I wait for 1 sec
+		And I enter "michaellickallen@gmail.com" into input field having class "vO"
+		Then I wait for 1 sec
+		And I enter "This is Mike" into input field having class "aoT"
+		Then I should send email
+		Then I wait for 5 sec
+		When I click on element having id ":2w"
+		#Then I wait for 2 sec
+		#Then I should open new email

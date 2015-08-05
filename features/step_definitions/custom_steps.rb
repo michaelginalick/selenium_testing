@@ -29,6 +29,14 @@ Then (/^Then I should not see the composition box/) do
 	compose_box
 end
 
+Then (/^I should send email/) do 
+	send_email
+end
+
+Then (/^I should open new email/) do 
+	open_new_email
+end
+
 
 def verify_username
 	ele_username = $driver.find_element(:id, ":2w")
@@ -78,15 +86,27 @@ def compose_email
 end
 
 
-def compose_box
-	sleep(2)
-	input_box = $driver.find_element(:id, ":ml")
-	if input_box
+def send_email
+	$driver.find_element(:xpath, "//div[text()='Send']").click
+	input_box = $driver.find_element(:id, ":pm")
+	if !input_box
 		raise "Email was not sent"
 	else
 		puts "Email was sent"
 	end
 end
+
+# def open_new_email
+# 	$driver.find_element(:class, "aKx").click
+# 	sleep(2)
+# 	open_email = $driver.find_element(:class, "amn")
+# 	if !open_email
+# 		raise "Email was opened"
+# 	else
+# 		puts "Email was not open"
+# 	end
+# end
+
 
 
 
